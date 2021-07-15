@@ -7,5 +7,9 @@ The tool will scrape the website for raw text and then insert the words into a d
 Further work involves using the dictionary as a spell checker for typing in Jamaican Creole and organizing the dictionary formally. A long term goal is to create a grammar checker using ideas in [_Speech and Language Processing_](https://web.stanford.edu/~jurafsky/slp3/ed3book.pdf), particularly chapter 12.
 
 ## Todo
-
-☐ Everything
+- Print time
+- Print number of words
+- Show progress
+- Add links to appearance
+- Add context, i.e. the sentence that the first word appears in
+- UI
