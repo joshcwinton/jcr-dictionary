@@ -11,6 +11,6 @@ Future work involves using the dictionary as a spell checker for typing in Jamai
 - Print number of words
 - Show progress
 - Add links to appearance
-- Add context, i.e. the sentence that the first word appears in
+- Add context, i.e. the first sentence that each word appears in
 - UI
 - Spell checker
