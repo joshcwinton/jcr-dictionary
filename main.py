@@ -1,6 +1,7 @@
 from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup
 from collections.abc import Set
+import pandas as pd
 
 book_num_chapters = {
     'MAT': 28,
@@ -33,10 +34,12 @@ book_num_chapters = {
 }
 
 words = []
+frequencies = {}
 
-with open('JCR_words.txt', 'w') as f:
+with open('big.txt', 'w') as f:
     for book, num_chapters in book_num_chapters.items():
         for chapter in range(1, num_chapters + 1):
+            print(chapter)
             url = f"https://www.bible.com/bible/476/{book}.{str(chapter)}.JNT"
             req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
             page = urlopen(req).read()
@@ -46,12 +49,22 @@ with open('JCR_words.txt', 'w') as f:
             for verse_elem in verse_elems:
                 verse_text = verse_elem.text.split()
                 for word in verse_text:
-                    words.append(''.join(filter(str.isalnum, word.lower())))
+                    clean_word = ''.join(filter(str.isalnum, word.lower()))
+                    words.append(clean_word)
+                    if clean_word in frequencies.keys():
+                        frequencies[clean_word] += 1
+                    else:
+                        frequencies[clean_word] = 1
 
-    words = sorted(list(set(words)))
+    # words = sorted(list(set(words)))
 
     for word in words:
         f.write(word + "\n")
+
+# df = pd.DataFrame(list(frequencies.items()), columns = ('word', 'frequency'))
+# print(df)
+
+# df.to_excel('frequencies.xlsx')
 
 # TODO
 # Print time
